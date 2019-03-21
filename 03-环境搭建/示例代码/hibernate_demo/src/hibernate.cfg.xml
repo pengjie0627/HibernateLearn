@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC
+	"-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+	"http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+	<!-- 要连接数据库的配置 -->
+	<hibernate-configuration>
+		<session-factory>
+			<!-- 数据库的驱动 -->
+			<property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
+			<!-- 数据库的地址 --><!--jdbc:mysql:///hibernate等价于jdbc:mysql:localhost:3306/hibernate  -->
+			<!-- hibernate指的是数据库名称 -->
+			<property name="hibernate.connection.url">jdbc:mysql:///hibernate</property>
+			<!-- 数据库的用户名 -->
+			<property name="hibernate.connection.username">root</property>
+			<!-- 数据库的密码 -->
+			<property name="hibernate.connection.password">root</property>
+			<!-- 配置数据库的方言，比如mysql和sqlserver数据库中分页的查询语句就不同 -->
+			<!-- mysql中: select * from 表 limit ?,?-->
+			<!-- sqlserver中: select * from 表 top ?,? -->
+			<property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
+			
+			<!-- 配置数据库连接池,这里我们用的是c3p0 -->
+			<property name="hibernate.connection.provider_class">org.hibernate.connection.C3P0ConnectionProvider</property>
+			
+			<!-- 在控制台中显示hibernate帮我生成的sql语句配置,但是这里基本上都是一行行的展示，不易查看，需要下面的配置 -->
+			<property name="hibernate.show_sql">true</property>
+			<!-- 让现实的sql语句可以更好地查看 -->
+			<property name="hibernate.format_sql">true</property>
+			
+			<!-- 加载Customer的映射文件 -->
+			<mapping resource="com/hd/domain/Customer.hbm.xml"></mapping>
+		</session-factory>	
+	</hibernate-configuration>    
